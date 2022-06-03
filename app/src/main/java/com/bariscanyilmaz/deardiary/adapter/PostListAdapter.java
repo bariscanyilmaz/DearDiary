@@ -1,5 +1,7 @@
 package com.bariscanyilmaz.deardiary.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bariscanyilmaz.deardiary.DetailPostActivity;
 import com.bariscanyilmaz.deardiary.R;
 import com.bariscanyilmaz.deardiary.databinding.PostListItemBinding;
 import com.bariscanyilmaz.deardiary.model.Post;
+import com.bariscanyilmaz.deardiary.util.OnItemClickListener;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -19,11 +23,13 @@ import java.util.List;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
+
     private List<Post> posts;
     private PostListItemBinding binding;
-
-    public PostListAdapter(List<Post> posts){
+    private OnItemClickListener<Post> onItemClickListener;
+    public PostListAdapter(List<Post> posts,OnItemClickListener<Post> onItemClickListener){
         this.posts=posts;
+        this.onItemClickListener=onItemClickListener;
     }
 
 
@@ -45,7 +51,18 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         holder.binding.titleTxtView.setText(post.title);
         holder.binding.locationTxtView.setText(post.location);
 
+        holder.binding.card.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                //TODO confirm password
+                PostListAdapter.this.onItemClickListener.onItemClick(post);
+            }
+        });
+
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -53,6 +70,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
+
         private PostListItemBinding binding;
 
         public ViewHolder(@NonNull PostListItemBinding binding) {

@@ -13,6 +13,7 @@ import android.view.View;
 import com.bariscanyilmaz.deardiary.adapter.PostListAdapter;
 import com.bariscanyilmaz.deardiary.databinding.ActivityMainBinding;
 import com.bariscanyilmaz.deardiary.model.Post;
+import com.bariscanyilmaz.deardiary.util.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,14 +46,23 @@ public class MainActivity extends AppCompatActivity {
         posts.add(new Post("Party","Hello world",R.drawable.party,new Date()));
 
         postsRecyclerView=binding.postsRecyclerView;
-        postsRecyclerView.setAdapter(new PostListAdapter(posts));
+        postsRecyclerView.setAdapter(new PostListAdapter(posts,onPostItemClickListener));
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
+    OnItemClickListener<Post> onPostItemClickListener=new OnItemClickListener<Post>() {
+        @Override
+        public void onItemClick(Post data) {
+            Intent detail=new Intent(getApplicationContext(),DetailPostActivity.class);
+            detail.putExtra("post",data);
+            startActivity(detail);
+        }
+    };
+
+
+
     public void createPost(){
-
         Log.v("Click","Floating action button clicked");
-
     }
 
 
