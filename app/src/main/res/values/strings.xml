@@ -8,4 +8,8 @@
     <string name="action_1">Action 1</string>
     <string name="action_2">Action 2</string>
     <string name="location">Location</string>
+    <string name="edit_post_detail">Edit</string>
+    <string name="share_post_detail">Share</string>
+    <string name="export_as_pdf_post_detail">Export as PDF</string>
+    <string name="deletePostDetail">Delete</string>
 </resources>

@@ -15,10 +15,13 @@ public class Post implements Parcelable {
     public String location;
     public Date date;
 
-    public Post(String title,String text,int mood,Date date){
+    public Post(String title,String text,String imgPath,String videoPath,int mood,String location,Date date){
         this.title=title;
         this.text=text;
+        this.imgPath=imgPath;
+        this.videoPath=videoPath;
         this.mood=mood;
+        this.location=location;
         this.date=date;
     }
 

@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DearDiary">
+        <activity android:name=".CreatePostActivity" android:exported="false"/>
         <activity
             android:name=".DetailPostActivity"
-            android:exported="false" />
+            android:exported="false" android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
