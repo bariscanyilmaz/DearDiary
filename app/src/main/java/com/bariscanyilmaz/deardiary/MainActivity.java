@@ -41,9 +41,27 @@ public class MainActivity extends AppCompatActivity {
         });
         setContentView(binding.getRoot());
         posts=new ArrayList<>();
-        posts.add(new Post("Hello","Hello world",null,null,R.drawable.angry,"Paris",new Date()));
-        posts.add(new Post("Good","Hello world",null,null,R.drawable.sad,"Rome",new Date()));
-        posts.add(new Post("Party","Hello world",null,null,R.drawable.party,"New York",new Date()));
+        posts.add(new Post("Hello","Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
+                "        Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s,\n" +
+                "        when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
+                "        It has survived not only five centuries, but also the leap into electronic typesetting,\n" +
+                "        remaining essentially unchanged.\n" +
+                "        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n" +
+                "        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",null,null,R.drawable.angry,"Paris",new Date()));
+        posts.add(new Post("Good","Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
+                "        Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s,\n" +
+                "        when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
+                "        It has survived not only five centuries, but also the leap into electronic typesetting,\n" +
+                "        remaining essentially unchanged.\n" +
+                "        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n" +
+                "        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",null,null,R.drawable.sad,"Rome",new Date()));
+        posts.add(new Post("Party","Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
+                "        Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s,\n" +
+                "        when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
+                "        It has survived not only five centuries, but also the leap into electronic typesetting,\n" +
+                "        remaining essentially unchanged.\n" +
+                "        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n" +
+                "        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",null,null,R.drawable.party,"New York",new Date()));
 
         postsRecyclerView=binding.postsRecyclerView;
         postsRecyclerView.setAdapter(new PostListAdapter(posts,onPostItemClickListener));
