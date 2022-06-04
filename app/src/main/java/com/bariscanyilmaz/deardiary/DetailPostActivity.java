@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bariscanyilmaz.deardiary.databinding.ActivityDetailPostBinding;
 import com.bariscanyilmaz.deardiary.model.Post;
@@ -37,6 +40,17 @@ public class DetailPostActivity extends AppCompatActivity {
             binding.postDetailLocationText.setText(post.location);
             binding.postDetailMoodImage.setImageResource(post.mood);
             binding.postDetailTitleText.setText(post.title);
+            binding.postDetailText.setText(post.text);
+
+            if(post.imgPath!=null){
+                Bitmap bmImg = BitmapFactory.decodeFile(post.imgPath);
+                binding.postDetailImage.setImageBitmap(bmImg);
+                binding.postDetailImage.setVisibility(View.VISIBLE);
+            }
+
+
+
+
         }
 
     }

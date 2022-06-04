@@ -23,7 +23,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="6dp">
 
                 <TextView
                     android:id="@+id/postDetailDateText"
@@ -97,12 +97,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="10dp">
+            android:paddingHorizontal="16dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/postDetailImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:srcCompat="@drawable/mood" />
 
             <TextView
