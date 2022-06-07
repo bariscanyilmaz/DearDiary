@@ -2,8 +2,15 @@ package com.bariscanyilmaz.deardiary.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
+import com.bariscanyilmaz.deardiary.di.HashService;
+
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.Date;
+
+import javax.inject.Inject;
 
 public class Post implements Parcelable {
     public int id;
@@ -14,8 +21,9 @@ public class Post implements Parcelable {
     public int mood;
     public String location;
     public Date date;
+    private String password;
 
-    public Post(String title,String text,String imgPath,String videoPath,int mood,String location,Date date){
+    public Post(String title,String text,String imgPath,String videoPath,int mood,String location,Date date,String password){
         this.title=title;
         this.text=text;
         this.imgPath=imgPath;
@@ -23,6 +31,11 @@ public class Post implements Parcelable {
         this.mood=mood;
         this.location=location;
         this.date=date;
+        this.password=password;
+    }
+
+    public boolean checkPassword(String hash){
+        return  this.password.equals(hash);
     }
 
     protected Post(Parcel parcel) {
@@ -34,6 +47,7 @@ public class Post implements Parcelable {
         this.mood=parcel.readInt();
         this.location=parcel.readString();
         this.date=new Date(parcel.readLong());
+        this.password=parcel.readString();
     }
 
 
@@ -53,6 +67,8 @@ public class Post implements Parcelable {
         parcel.writeInt(this.mood);
         parcel.writeString(this.location);
         parcel.writeLong(this.date.getTime());
+        parcel.writeString(this.password);
+
 
     }
     public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
