@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             final EditText input=new EditText(MainActivity.this);
             input.setInputType(InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
-
+            input.setTransformationMethod(PasswordTransformationMethod.getInstance());
             builder.setView(input);
 
             builder.setPositiveButton("Show", new DialogInterface.OnClickListener() {
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(detail);
 
                     }else{
-                        //
-
                         Snackbar.make(
                                 binding.postsRecyclerView,
                                 "Wrong Password",
