@@ -1,8 +1,10 @@
 package com.bariscanyilmaz.deardiary;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -77,6 +79,44 @@ public class DetailPostActivity extends AppCompatActivity {
                 return  true;
             case R.id.postDetailDelete:
                 //delete
+                //
+                AlertDialog.Builder builder=new AlertDialog.Builder(DetailPostActivity.this);
+                builder.setTitle("Delete Diary");
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Snackbar sb= Snackbar.make(
+                                binding.postDetailLayout,
+                                "Deleted Diary",
+                                Snackbar.LENGTH_SHORT
+                        );
+
+                        sb.addCallback(new Snackbar.Callback(){
+                            @Override
+                            public void onDismissed(Snackbar transientBottomBar, int event) {
+                                super.onDismissed(transientBottomBar, event);
+                                if (event==Snackbar.Callback.DISMISS_EVENT_TIMEOUT){
+                                    finish();
+                                }
+                            }
+                        });
+
+                        sb.show();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+
+                builder.create();
+                builder.show();
+
                 return true;
             case R.id.postDetailExPortAsPDF:
 

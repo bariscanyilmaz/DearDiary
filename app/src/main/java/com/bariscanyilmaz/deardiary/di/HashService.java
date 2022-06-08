@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 public class HashService {
 
+
     @Inject
     public HashService(){
 
