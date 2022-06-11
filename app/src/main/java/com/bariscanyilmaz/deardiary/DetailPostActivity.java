@@ -1,23 +1,33 @@
 package com.bariscanyilmaz.deardiary;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+
+import com.bariscanyilmaz.deardiary.data.PostViewModel;
 import com.bariscanyilmaz.deardiary.databinding.ActivityDetailPostBinding;
 import com.bariscanyilmaz.deardiary.model.Post;
+import com.bariscanyilmaz.deardiary.util.App;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.net.URI;
 import java.text.DateFormat;
 
 public class DetailPostActivity extends AppCompatActivity {
@@ -25,14 +35,32 @@ public class DetailPostActivity extends AppCompatActivity {
     ActivityDetailPostBinding binding;
     private Intent intent;
     private Post post;
+    PostViewModel postViewModel;
+
+    ActivityResultLauncher<Intent> editPostLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), (ActivityResult result) -> {
+
+                if (result.getResultCode() == RESULT_OK) {
+
+                    Intent intent=result.getData();
+                    if(intent!=null){
+                        Post post= intent.getParcelableExtra("post");
+                        boolean isEdit=intent.getBooleanExtra("isEdit",false);
+                        if (isEdit){
+                            postViewModel.udpate(post);
+                        }
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityDetailPostBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
+        postViewModel = new ViewModelProvider(App.getActivity()).get(PostViewModel.class);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         intent=getIntent();
         if(intent!=null){
 
@@ -45,14 +73,11 @@ public class DetailPostActivity extends AppCompatActivity {
             binding.postDetailText.setText(post.text);
 
             if(post.imgPath!=null){
-                Bitmap bmImg = BitmapFactory.decodeFile(post.imgPath);
-                binding.postDetailImage.setImageBitmap(bmImg);
+                //Bitmap bmImg = BitmapFactory.decodeFile(post.imgPath);
+                Uri uri= Uri.parse(post.imgPath);
+                binding.postDetailImage.setImageURI(uri);
                 binding.postDetailImage.setVisibility(View.VISIBLE);
             }
-
-
-
-
         }
 
     }
@@ -65,6 +90,8 @@ public class DetailPostActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -72,7 +99,9 @@ public class DetailPostActivity extends AppCompatActivity {
                 //create
                 Intent intent=new Intent(getApplicationContext(),CreatePostActivity.class);
                 intent.putExtra("post",post);
-                startActivity(intent);
+                editPostLauncher.launch(intent);
+
+                //startActivity(intent);
                 return true;
             case R.id.postDetailShare:
                 //share
@@ -86,6 +115,8 @@ public class DetailPostActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        postViewModel.delete(post);
+
                         Snackbar sb= Snackbar.make(
                                 binding.postDetailLayout,
                                 "Deleted Diary",
@@ -97,6 +128,7 @@ public class DetailPostActivity extends AppCompatActivity {
                             public void onDismissed(Snackbar transientBottomBar, int event) {
                                 super.onDismissed(transientBottomBar, event);
                                 if (event==Snackbar.Callback.DISMISS_EVENT_TIMEOUT){
+
                                     finish();
                                 }
                             }

@@ -31,7 +31,10 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         this.posts=posts;
         this.onItemClickListener=onItemClickListener;
     }
-
+    public void setData(List<Post> data){
+        this.posts=data;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
