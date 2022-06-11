@@ -4,7 +4,10 @@ import java.security.MessageDigest;
 import java.util.Base64;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+
+@Singleton
 public class HashService {
 
 

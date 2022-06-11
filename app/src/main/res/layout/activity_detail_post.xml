@@ -105,7 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:srcCompat="@drawable/mood" />
+                app:srcCompat="@drawable/mood"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/postDetailText"
@@ -116,7 +117,8 @@
                 android:text="@string/postDetailSampleText"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                tools:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

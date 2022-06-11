@@ -9,6 +9,7 @@
     <string name="action_2">Action 2</string>
     <string name="location">Location</string>
     <string name="edit_post_detail">Edit</string>
+    <string name="save_post_create">Save</string>
     <string name="share_post_detail">Share</string>
     <string name="export_as_pdf_post_detail">Export as PDF</string>
     <string name="deletePostDetail">Delete</string>
@@ -19,4 +20,15 @@
         remaining essentially unchanged.
         It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map_api_key">AIzaSyAZicOB6dCHv7ENSW7R-ocbiaCS_4_pbMY</string>
 </resources>
